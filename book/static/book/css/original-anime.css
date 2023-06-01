@@ -1,0 +1,281 @@
+@charset "utf-8";
+
+/* スクロールをしたら出現する要素にはじめに透過0を指定　*/
+
+.fadeInTrigger{
+  opacity: 0;
+}
+
+/*==================================================
+ふわっ
+===================================*/
+/* fadeIn */
+
+.fadeIn{
+  animation-name: fadeInAnime;
+  animation-duration:3s;
+  animation-fill-mode:forwards;
+  opacity:0;
+  }
+  
+  @keyframes fadeInAnime{
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  }
+
+/*==================================================
+下からふわっ
+===================================*/
+
+.fadeUp {
+animation-name: fadeUpAnime;/*アニメーションの定義名*/
+animation-duration:1s;/*アニメーション変化時間 ※デフォルト*/
+animation-fill-mode:forwards;/*アニメーションの開始と終了時の状態を指定*/
+opacity:0;
+}
+
+/*アニメーションの開始から終了までを指定する*/
+@keyframes fadeUpAnime{
+  from {
+    opacity: 0;
+  transform: translateY(100px);
+  }
+
+  to {
+    opacity: 1;
+  transform: translateY(0);
+  }
+}
+
+/*==================================================
+無限移動
+===================================*/
+
+.loop_wrap {
+  animation-name: changeBackGround;
+  animation-iteration-count: infinite;
+  animation-duration: 10s;
+  display: flex;
+  width: 100vw;
+  height: 100px;
+  overflow: hidden;
+  background-color: #fd6158;
+}
+
+.loop_wrap div {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.loop_wrap img {
+  width: auto;
+  height: 100%;
+}
+
+@keyframes changeBackGround {
+  0% {
+  background-color: #FFC0CB;
+  }
+  20%{
+  background-color: #FFC0CB;
+  }
+  40%{
+  background-color: #00FFFF;
+  }
+  60%{
+  background-color: #eef35e;
+  }
+  80%{
+  background-color: #84f679;
+  }
+  100%{
+  background-color: #FFC0CB;
+  }
+}
+
+@keyframes loop {
+  0% {
+    transform: translateX(-500%);
+  }
+  to {
+    transform: translateX(800%);
+  }
+}
+
+@keyframes loop2 {
+  0% {
+    transform: translateX(-400%);
+  }
+  to {
+    transform: translateX(900%);
+  }
+}
+
+.loop_wrap h1:first-child {
+  animation-name: loop;
+  animation-duration: 15s;
+  animation-delay: -10s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.loop_wrap h1:last-child {
+  animation-name: loop2;
+  animation-duration: 15s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.loop_wrap div:nth-child(odd) {
+  animation-name: loop;
+  animation-duration: 50s;
+  animation-delay: -25s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.loop_wrap div:nth-child(even) {
+  animation-name: loop2;
+  animation-duration: 50s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/*==================================================
+アニメーション設定
+===================================*/
+
+/* アニメーション１回分の時間の長さを指定するCSS*/
+
+.change-time05{
+  animation-duration: 0.5s;
+}
+
+.change-time1{
+  animation-duration: 1s;
+}
+
+.change-time15{
+  animation-duration: 1.5s;
+}
+
+.change-time2{
+ animation-duration: 2s;
+}
+
+.change-time25{
+animation-duration: 2.5s;
+}
+
+
+/* 動きをループさせるCSS*/
+
+.count2{
+animation-iteration-count: 2;/*この数字を必要回数分に変更*/
+}
+
+.countinfinite{
+ animation-iteration-count: infinite;/*無限ループ*/
+}
+
+
+/* アニメーションの開始を遅らせるCSS*/
+
+.delay-time05{
+animation-delay: 0.5s;
+}
+
+.delay-time1{
+animation-delay: 1s;
+}
+
+.delay-time15{
+animation-delay: 1.5s;
+}
+
+.delay-time2{
+animation-delay: 2s;
+}
+
+.delay-time25{
+  animation-delay: 2.5s;
+}
+
+
+/* アニメーションの進行具合を操作するCSS*/
+
+.timing-ease{
+animation-timing-function:ease;
+}
+
+.timing-ease-in{
+animation-timing-function:ease-in;
+}
+
+.timing-ease-out{
+animation-timing-function:ease-out;
+}
+
+.timing-ease-in-out{
+animation-timing-function:ease-in-out;  
+}
+
+.timing-linear{
+animation-timing-function:linear; 
+}
+
+.timing-steps{
+animation-timing-function:steps(4, end);  
+}
+
+.timing-cubic-bezier{
+animation-timing-function:cubic-bezier(.17,.67,.67,.51);  
+}
+
+/*==================================================
+アニメーションをまとめて設定する
+===================================*/
+
+.fadeDown{
+animation: fadeDownAnime 1s ease 1.5s forwards;/*アニメーションの定義名、アニメーション１回分の時間の長さ、アニメーションの進行具合、アニメーションの開始を遅らせる、アニメーションの開始と終了時の状態を指定をまとめて設定*/
+opacity:0;
+}
+
+/*アニメーションの開始から終了までを指定する*/
+@keyframes fadeDownAnime{
+  from {
+    opacity: 0;
+  transform: translateY(-100px);
+  }
+
+  to {
+    opacity: 1;
+  transform: translateY(0);
+  }
+}
+
+
+/*========= レイアウトのためのCSS ===============*/
+
+.wrapper{
+  overflow: hidden;
+}
+
+.flex{
+  display:flex;
+  flex-wrap: wrap;
+}
+
+.box{
+  width: 220px;
+  padding: 20px;
+  margin:0 20px 20px 0;
+  background: #666;
+  color: #fff;
+  box-sizing:border-box;
+}

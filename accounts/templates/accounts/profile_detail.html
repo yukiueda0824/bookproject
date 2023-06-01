@@ -1,0 +1,24 @@
+{% extends 'base.html'%}
+
+{% block title %}プロフィール{% endblock %}
+
+{% block content %}
+  <div class="m-3 card animate__animated animate__fadeInRight" style="width: 30rem;">
+    <h5 class="card-header">{{ object.user.username }}</h5>
+    <div class="card-body">
+        <p>ユーザ: {{ object.user.username }}</p>
+        <p>名前：{{ object.name  }}</p>
+        <p>性別：{{ object.gender  }}</p>
+        <p>お気に入り本：{{ object.book  }}</p>
+        <p>興味あるカテゴリ：{{ object.interestedcategory  }}</p>
+        <p>経験あるカテゴリ：{{ object.experiencedcategory  }}</p>
+        <p>入社日：{{ object.joingtime  }}</p>
+        <p>一言欄：</p>
+        <p>{{ object.text  }}</p>
+      <a href="{% url 'accounts:list_profile' %}" class="btn btn-primary">一覧へ</a>
+      {% if object.user.username == request.user.username %}
+        <a href="{% url 'accounts:update_profile' object.pk %}" class="btn btn-primary">編集する</a>
+      {% endif %}
+    </div>
+  </div>
+{% endblock content %}

@@ -1,0 +1,33 @@
+{% extends 'base.html'%}
+
+{% block title %}書籍詳細{% endblock %}
+
+{% block content %}
+  <div class="m-3 card animate__animated animate__fadeInRight" style="width: 30rem;">
+    {#<img src="{{ item.thumbnail.url }}" class="img-thumbnail" />#}
+    <h5 class="card-header">{{ object.title }}</h5>
+    <div class="card-body">
+      <p class="card-text">{{ object.text }}</p>
+      <div class="border p-4 mb-2">
+        {% for review in object.review_set.all %}
+        <div>
+          <h3 class="h4">{{ review.title }}</h3>
+          <div class="px-2">
+            <span>(投稿ユーザー:{{ review.user.username }})</span>
+            <h6>評価：{{ review.rate }}点</h6>
+            <p>{{ review.text }}</p>
+            <p>{{ review.time }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <a href="{% url 'review' object.pk %}" class="btn btn-primary">レビューする</a>
+      <a href="{% url 'list-book' %}" class="btn btn-primary">一覧へ</a>
+      {% if object.user.username == request.user.username %}
+        <a href="{% url 'update-book' object.pk %}" class="btn btn-primary">編集する</a>
+        <a href="{% url 'delete-book' object.pk %}" class="btn btn-primary">削除する</a> 
+      {% endif %}
+      <h6 class="card-title">{{ object.category}}</h6>
+    </div>
+  </div>
+{% endblock content %}
