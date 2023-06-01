@@ -24,17 +24,19 @@
   </div>
     <div class="col-lg-3 col-xs-12">
       <h2 class="animate__animated animate__zoomIn">評価順TOP2</h2>
-      <h6 class="fadeInTrigger">カテゴリ：開発言語</h6>
+      <h6 class="fadeInTrigger">カテゴリ：プログラム言語</h6>
       {% for ranking_book in laungagepage_obj %}
         <div class="p-4 m-4 bg-light border border-success rounded fadeInTrigger">
           <h3 class="text-success h5">{{ ranking_book.title }}</h3>
           <img src="{{ ranking_book.thumbnail.url }}" class="img-thumbnail" />
           <h6>評価：{{ranking_book.avg_rating|floatformat:2}}点</h6>
+          {% if ranking_book.avg_rating != null %}
           <h6>評価：
             {% with range=''|center:ranking_book.avg_rating  %}
             {% for x in range %}★{% endfor %}
             {% endwith %}
           </h6>
+          {% endif %}
           <a href="{% url 'detail-book' ranking_book.id %}">詳細を見る</a>
         </div>
       {% endfor %}
@@ -44,6 +46,7 @@
           <h3 class="text-success h5">{{ ranking_book2.title }}</h3>
           <img src="{{ ranking_book2.thumbnail.url }}" class="img-thumbnail" />
           <h6>評価：{{ranking_book2.avg_rating|floatformat:2}}点</h6>
+          {% if ranking_book2.avg_rating != null %}
           <h6>評価：
             {% with range=''|center:ranking_book2.avg_rating  %}
             {% for x in range %}★{% endfor %}
@@ -51,6 +54,7 @@
           </h6>
           <a href="{% url 'detail-book' ranking_book2.id %}">詳細を見る</a>
         </div>
+          {% endif %}
       {% endfor %}
       <h6 class="fadeInTrigger">カテゴリ：ゲーム開発</h6>
       {% for ranking_book3 in gamepage_obj %}
@@ -58,11 +62,13 @@
           <h3 class="text-success h5">{{ ranking_book3.title }}</h3>
           <img src="{{ ranking_book3.thumbnail.url }}" class="img-thumbnail" />
           <h6>評価：{{ranking_book3.avg_rating|floatformat:2}}点</h6>
+          {% if ranking_book3.avg_rating != null %}
           <h6>評価：
             {% with range=''|center:ranking_book3.avg_rating  %}
             {% for x in range %}★{% endfor %}
             {% endwith %}
           </h6>
+          {% endif %}
           <a href="{% url 'detail-book' ranking_book3.id %}">詳細を見る</a>       
         </div>
       {% endfor %}

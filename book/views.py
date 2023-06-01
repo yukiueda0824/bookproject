@@ -91,6 +91,7 @@ class CreateReviewView(LoginRequiredMixin, CreateView):
 def index_view(request):
     object_list = Book.objects.order_by('-id')
     ranking_list = Book.objects.annotate(avg_rating=Avg('review__rate')).order_by('-avg_rating')
+
     laungage_list = Book.objects.filter(category='プログラミング言語').annotate(avg_rating=Avg('review__rate')).order_by('-avg_rating')
     game_list = Book.objects.filter(category='ゲーム開発').annotate(avg_rating=Avg('review__rate')).order_by('-avg_rating')
     system_list = Book.objects.filter(category='システム').annotate(avg_rating=Avg('review__rate')).order_by('-avg_rating')
@@ -99,6 +100,7 @@ def index_view(request):
     laungagepaginator = Paginator(laungage_list, ITEM_PER_PAGE)
     gamepaginator = Paginator(game_list, ITEM_PER_PAGE)
     systempaginator = Paginator(system_list, ITEM_PER_PAGE)
+    
     page_number = request.GET.get('page',1)
     laungagepage_obj = laungagepaginator.page(page_number)
     gamepage_obj = gamepaginator.page(page_number)
