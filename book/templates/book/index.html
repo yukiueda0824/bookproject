@@ -52,9 +52,9 @@
             {% for x in range %}★{% endfor %}
             {% endwith %}
           </h6>
+          {% endif %}
           <a href="{% url 'detail-book' ranking_book2.id %}">詳細を見る</a>
         </div>
-          {% endif %}
       {% endfor %}
       <h6 class="fadeInTrigger">カテゴリ：ゲーム開発</h6>
       {% for ranking_book3 in gamepage_obj %}
